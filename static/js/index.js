@@ -5,7 +5,7 @@ function sensor1() {
 	//console.log("Obteniendo historial 1 .....");
 	console.log("Obteniendo Datos de Sensor .....");
 	message = new Paho.MQTT.Message("sensor1");
-    	message.destinationName = "jfjacome.fie@unach.edu.ec/prueba";
+    	message.destinationName = "jfjacome.fie@unach.edu.ec/led";
     	client.send(message);
 	//document.getElementById("sensor").innerHTML="led on";
 	
@@ -14,7 +14,7 @@ function sensor2(){
 	//alert("led off");
 	console.log("Obteniendo historial 2 .....");
 	message = new Paho.MQTT.Message("sensor2");
-    	message.destinationName = "jfjacome.fie@unach.edu.ec/prueba";
+    	message.destinationName = "jfjacome.fie@unach.edu.ec/led";
     	client.send(message);
 	//document.getElementById("sensor").innerHTML="led off";
 }
