@@ -7,7 +7,6 @@ function sensor1() {
 	message = new Paho.MQTT.Message("sensor1");
     	message.destinationName = "jfjacome.fie@unach.edu.ec/prueba";
     	client.send(message);
-	cnt=cnt+1;
 	//document.getElementById("sensor").innerHTML="led on";
 	
 }
