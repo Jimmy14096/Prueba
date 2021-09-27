@@ -1,33 +1,21 @@
 //https://www.eclipse.org/paho/clients/js/
-var cnt=0;
-function historial1() {
+//var cnt=0;
+function sensor1() {
 	//alert("led on");
 	//console.log("Obteniendo historial 1 .....");
-	console.log("Obteniendo CONTROL LED .....");
-	
-	if(cnt==0){
-	message = new Paho.MQTT.Message("ON");
-    	message.destinationName = "jfjacome.fie@unach.edu.ec/led";
+	console.log("Obteniendo Datos de Sensor .....");
+	message = new Paho.MQTT.Message("sensor1");
+    	message.destinationName = "jfjacome.fie@unach.edu.ec/prueba";
     	client.send(message);
 	cnt=cnt+1;
-	}
-	else if(cnt==1){
-	message = new Paho.MQTT.Message("OFF");
-    	message.destinationName = "jfjacome.fie@unach.edu.ec/led";
-    	client.send(message);
-	cnt=0;
-	}
-	
 	//document.getElementById("sensor").innerHTML="led on";
 	
-	
-  
 }
-function historial2(){	
+function sensor2(){	
 	//alert("led off");
 	console.log("Obteniendo historial 2 .....");
-	message = new Paho.MQTT.Message("historial");
-    	message.destinationName = "jfjacome.fie@unach.edu.ec/historial";
+	message = new Paho.MQTT.Message("sensor2");
+    	message.destinationName = "jfjacome.fie@unach.edu.ec/prueba";
     	client.send(message);
 	//document.getElementById("sensor").innerHTML="led off";
 }
@@ -62,9 +50,9 @@ function historial2(){
     console.log("Conectado...");
 	
     client.subscribe("jfjacome.fie@unach.edu.ec/led");
-    client.subscribe("jfjacome.fie@unach.edu.ec/historial");
+    client.subscribe("jfjacome.fie@unach.edu.ec/prueba");
     message = new Paho.MQTT.Message("hola desde la web");
-    message.destinationName = "jfjacome.fie@unach.edu.ec/historial";
+    message.destinationName = "jfjacome.fie@unach.edu.ec/prueba";
  
     client.send(message);
   
@@ -87,16 +75,12 @@ function historial2(){
   function onMessageArrived(message) {
     console.log("onMessageArrived:"+message.payloadString);
 	  sms=message.payloadString;
-	  numero=sms.length;
 	  if(sms[7]=="1"){
-	   document.getElementById("historial1").innerHTML=sms;
+	   document.getElementById("sensor1").innerHTML=sms;
 	  }
 	   if(sms[7]=="2"){
-	   document.getElementById("historial2").innerHTML=message.payloadString;
+	   document.getElementById("sensor2").innerHTML=message.payloadString;
 	  }
-	   if(numero==6 || numero==7){
-	    document.getElementById("LED").innerHTML=message.payloadString;
-	   }
-		  
+	  
   }
   
